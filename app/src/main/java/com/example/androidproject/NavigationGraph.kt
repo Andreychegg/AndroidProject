@@ -6,23 +6,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
-    NavHost(navController, startDestination = Routes.ItemsList.route) {
-        composable(BottomNavigationItems.ItemsList.route) {
-            ItemsList(navController = navController)
+fun NavigationGraph(navController: NavHostController, movieViewModel: MovieViewModel) {
+    NavHost(
+        navController = navController,
+        startDestination = "itemsList"
+    ) {
+        composable("itemsList") {
+            ItemsList(navController = navController, movieViewModel = movieViewModel)
         }
-        composable(BottomNavigationItems.Home.route) {
-            Home()
-        }
-        composable(BottomNavigationItems.Screen2.route) {
-            Screen2()
-        }
-        composable(BottomNavigationItems.Screen3.route) {
-            Screen3()
-        }
-        composable("itemInfo/{itemId}") { backStackEntry ->
-            val itemId = backStackEntry.arguments?.getString("itemId")?.toInt() ?: 0
-            ItemInfo(itemId = itemId)
+        composable("itemInfo/{movieId}") { backStackEntry ->
+            val movieId = backStackEntry.arguments?.getString("movieId") ?: ""
+            ItemInfo(movieId = movieId, movieViewModel = movieViewModel)
         }
     }
 }
