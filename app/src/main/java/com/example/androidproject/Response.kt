@@ -15,10 +15,17 @@ data class Movie(
     val plot: String,
     val primary_title: String,
     val genres: List<String>,
+    val posters: List<Poster>?,
     val rating: Rating
 )
 
 data class Rating(
     val aggregate_rating: Float,
     val votes_count: Int
+)
+
+data class Poster(
+    val url: String,
+    val width: Int,
+    val height: Int
 )

@@ -12,6 +12,11 @@ class MovieRepository(private val api: IMDbApi) {
                     plot
                     primary_title
                     genres
+                    posters {
+                      url
+                      width
+                      height
+                    }
                     rating {
                       aggregate_rating
                       votes_count
